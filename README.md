@@ -1,6 +1,9 @@
 [![Go Report Card](https://goreportcard.com/badge/github.com/rah-0/parsort)](https://goreportcard.com/report/github.com/rah-0/parsort)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
+<a href="https://www.buymeacoffee.com/rah.0" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/arial-orange.png" alt="Buy Me A Coffee" height="50"></a>
+
+
 # (par)allel (sort)ing
 A minimal, dependency-free Go library for parallel sorting of slices. Designed to scale across CPU cores and stay close to idiomatic Go.
 
@@ -197,3 +200,9 @@ Parsort_Sort_Time_100000-8       	     170	   6785655 ns/op	 9636026 B/op	      
 Parsort_Sort_Time_1000000-8      	      18	  60761972 ns/op	96028856 B/op	      71 allocs/op
 Parsort_Sort_Time_10000000-8     	       2	 651085630 ns/op	960039096 B/op	      71 allocs/op
 ```
+
+# 💚 Support
+Parsort was built out of love for clean and fast code. 
+If it saved you time or brought value to your project, feel free to show some support. Every bit is appreciated 🙂
+
+[![Buy Me A Coffee](https://cdn.buymeacoffee.com/buttons/default-orange.png)](https://www.buymeacoffee.com/rah.0)
