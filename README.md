@@ -82,6 +82,9 @@ Overall, ***parsort*** can reduce ns/op by up to **90%** but at the expense of a
 | 1000000    | Asc/Desc |   -70.35  |  +300.08 |
 | 10000000   | Asc/Desc |   -72.07  |  +300.01 |
 
+## Comparison to other libs?
+Absolutely, added them in the benchmarks repo, [here](https://github.com/rah-0/benchmarks/tree/master/meta#sorting).
+
 ## Baseline Bench
 All benchmarks are performed with: **1.000**, **10.000**, **100.000**, **1.000.000**, **10.000.000** values.  
 The baseline benches the standard lib, the results are the following:
