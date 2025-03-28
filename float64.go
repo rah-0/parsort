@@ -1,7 +1,6 @@
 package parsort
 
 import (
-	"runtime"
 	"sort"
 	"sync"
 )
@@ -24,10 +23,9 @@ func float64Sort(data []float64, reverse bool) {
 		return
 	}
 
-	numCPU := runtime.NumCPU()
-	chunkSize := (n + numCPU - 1) / numCPU
+	chunkSize := (n + CoreCount - 1) / CoreCount
 
-	chunks := make([][]float64, 0, numCPU)
+	chunks := make([][]float64, 0, CoreCount)
 	for i := 0; i < n; i += chunkSize {
 		end := i + chunkSize
 		if end > n {

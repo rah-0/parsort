@@ -1,7 +1,6 @@
 package parsort
 
 import (
-	"runtime"
 	"sort"
 	"sync"
 )
@@ -26,10 +25,9 @@ func uint32Sort(data []uint32, reverse bool) {
 		return
 	}
 
-	numCPU := runtime.NumCPU()
-	chunkSize := (n + numCPU - 1) / numCPU
+	chunkSize := (n + CoreCount - 1) / CoreCount
 
-	chunks := make([][]uint32, 0, numCPU)
+	chunks := make([][]uint32, 0, CoreCount)
 	for i := 0; i < n; i += chunkSize {
 		end := i + chunkSize
 		if end > n {

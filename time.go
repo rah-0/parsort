@@ -1,7 +1,6 @@
 package parsort
 
 import (
-	"runtime"
 	"sort"
 	"sync"
 	"time"
@@ -27,10 +26,9 @@ func timeSort(data []time.Time, reverse bool) {
 		return
 	}
 
-	numCPU := runtime.NumCPU()
-	chunkSize := (n + numCPU - 1) / numCPU
+	chunkSize := (n + CoreCount - 1) / CoreCount
 
-	chunks := make([][]time.Time, 0, numCPU)
+	chunks := make([][]time.Time, 0, CoreCount)
 	for i := 0; i < n; i += chunkSize {
 		end := i + chunkSize
 		if end > n {
