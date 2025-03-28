@@ -127,7 +127,7 @@ func TestInt32Desc_ReverseSorted(t *testing.T) {
 }
 
 func TestInt32Asc_LargeRandom(t *testing.T) {
-	data := genInt32s(2_000_000)
+	data := genInt32s(2000000)
 	expected := append([]int32(nil), data...)
 	sort.Slice(expected, func(i, j int) bool { return expected[i] < expected[j] })
 	Int32Asc(data)
@@ -137,7 +137,7 @@ func TestInt32Asc_LargeRandom(t *testing.T) {
 }
 
 func TestInt32Desc_LargeRandom(t *testing.T) {
-	data := genInt32s(2_000_000)
+	data := genInt32s(2000000)
 	expected := append([]int32(nil), data...)
 	sort.Slice(expected, func(i, j int) bool { return expected[i] > expected[j] })
 	Int32Desc(data)

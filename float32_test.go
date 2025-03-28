@@ -148,7 +148,7 @@ func TestFloat32Desc_SmallRandom(t *testing.T) {
 }
 
 func TestFloat32Asc_LargeRandom(t *testing.T) {
-	data := genFloat32s(2_000_000)
+	data := genFloat32s(2000000)
 	expected := append([]float32(nil), data...)
 	sort.Slice(expected, func(i, j int) bool { return expected[i] < expected[j] })
 	Float32Asc(data)
@@ -158,7 +158,7 @@ func TestFloat32Asc_LargeRandom(t *testing.T) {
 }
 
 func TestFloat32Desc_LargeRandom(t *testing.T) {
-	data := genFloat32s(2_000_000)
+	data := genFloat32s(2000000)
 	expected := append([]float32(nil), data...)
 	sort.Slice(expected, func(i, j int) bool { return expected[i] > expected[j] })
 	Float32Desc(data)

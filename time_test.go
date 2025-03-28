@@ -1,11 +1,21 @@
 package parsort
 
 import (
+	"math/rand"
 	"sort"
 	"strconv"
 	"testing"
 	"time"
 )
+
+func genTimes(n int) []time.Time {
+	a := make([]time.Time, n)
+	base := time.Now()
+	for i := range a {
+		a[i] = base.Add(time.Duration(rand.Int63n(1e9)))
+	}
+	return a
+}
 
 func TestTimeAsc_EmptySlice(t *testing.T) {
 	var data []time.Time
@@ -159,7 +169,7 @@ func TestTimeDesc_SmallRandom(t *testing.T) {
 }
 
 func TestTimeAsc_LargeRandom(t *testing.T) {
-	data := genTimes(2_000_000)
+	data := genTimes(2000000)
 	expected := append([]time.Time(nil), data...)
 	sort.Slice(expected, func(i, j int) bool {
 		return expected[i].Before(expected[j])
@@ -171,7 +181,7 @@ func TestTimeAsc_LargeRandom(t *testing.T) {
 }
 
 func TestTimeDesc_LargeRandom(t *testing.T) {
-	data := genTimes(2_000_000)
+	data := genTimes(2000000)
 	expected := append([]time.Time(nil), data...)
 	sort.Slice(expected, func(i, j int) bool {
 		return expected[i].After(expected[j])

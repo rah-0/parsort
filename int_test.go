@@ -1,10 +1,19 @@
 package parsort
 
 import (
+	"math/rand"
 	"sort"
 	"strconv"
 	"testing"
 )
+
+func genInts(n int) []int {
+	a := make([]int, n)
+	for i := range a {
+		a[i] = rand.Int()
+	}
+	return a
+}
 
 func TestIntAsc_EmptySlice(t *testing.T) {
 	var data []int
@@ -126,7 +135,7 @@ func TestIntDesc_ReverseSorted(t *testing.T) {
 }
 
 func TestIntAsc_LargeRandom(t *testing.T) {
-	data := genInts(2_000_000)
+	data := genInts(2000000)
 	expected := append([]int(nil), data...)
 	sort.Ints(expected)
 	IntAsc(data)
@@ -136,7 +145,7 @@ func TestIntAsc_LargeRandom(t *testing.T) {
 }
 
 func TestIntDesc_LargeRandom(t *testing.T) {
-	data := genInts(2_000_000)
+	data := genInts(2000000)
 	expected := append([]int(nil), data...)
 	sort.Sort(sort.Reverse(sort.IntSlice(expected)))
 	IntDesc(data)

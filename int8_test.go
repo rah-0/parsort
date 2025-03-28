@@ -127,7 +127,7 @@ func TestInt8Desc_ReverseSorted(t *testing.T) {
 }
 
 func TestInt8Asc_LargeRandom(t *testing.T) {
-	data := genInt8s(2_000_000)
+	data := genInt8s(2000000)
 	expected := append([]int8(nil), data...)
 	sort.Slice(expected, func(i, j int) bool { return expected[i] < expected[j] })
 	Int8Asc(data)
@@ -137,7 +137,7 @@ func TestInt8Asc_LargeRandom(t *testing.T) {
 }
 
 func TestInt8Desc_LargeRandom(t *testing.T) {
-	data := genInt8s(2_000_000)
+	data := genInt8s(2000000)
 	expected := append([]int8(nil), data...)
 	sort.Slice(expected, func(i, j int) bool { return expected[i] > expected[j] })
 	Int8Desc(data)

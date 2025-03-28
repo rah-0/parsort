@@ -147,7 +147,7 @@ func TestUint32Desc_SmallRandom(t *testing.T) {
 }
 
 func TestUint32Asc_LargeRandom(t *testing.T) {
-	data := genUint32s(2_000_000)
+	data := genUint32s(2000000)
 	expected := append([]uint32(nil), data...)
 	sort.Slice(expected, func(i, j int) bool { return expected[i] < expected[j] })
 	Uint32Asc(data)
@@ -157,7 +157,7 @@ func TestUint32Asc_LargeRandom(t *testing.T) {
 }
 
 func TestUint32Desc_LargeRandom(t *testing.T) {
-	data := genUint32s(2_000_000)
+	data := genUint32s(2000000)
 	expected := append([]uint32(nil), data...)
 	sort.Slice(expected, func(i, j int) bool { return expected[i] > expected[j] })
 	Uint32Desc(data)

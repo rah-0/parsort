@@ -1,13 +1,15 @@
 package parsort
 
 import (
+	"fmt"
+	"math/rand"
 	"sort"
 	"strconv"
 	"testing"
 	"time"
 )
 
-var testSizes = []int{1_000, 10_000, 100_000, 1_000_000, 10_000_000}
+var testSizes = []int{1000, 10000, 100000, 1000000, 10000000}
 
 func BenchmarkBaselineSortIntsAsc(b *testing.B) {
 	for _, size := range testSizes {
@@ -111,6 +113,62 @@ func BenchmarkBaselineSortStringsDesc(b *testing.B) {
 				tmp := make([]string, len(data))
 				copy(tmp, data)
 				sort.Sort(sort.Reverse(sort.StringSlice(tmp)))
+			}
+		})
+	}
+}
+
+type person struct {
+	Name string
+	Age  int
+}
+
+func genPeople(n int) []person {
+	a := make([]person, n)
+	for i := range a {
+		a[i] = person{
+			Name: fmt.Sprintf("Name%d", rand.Intn(1000000)),
+			Age:  rand.Intn(100),
+		}
+	}
+	return a
+}
+
+// Method 1: sort.Slice with index-based comparator
+func BenchmarkSortSlice_Arbitrary(b *testing.B) {
+	for _, size := range testSizes {
+		b.Run("Arbitrary_SortSlice_"+strconv.Itoa(size), func(b *testing.B) {
+			data := genPeople(size)
+			b.ReportAllocs()
+			b.ResetTimer()
+			for i := 0; i < b.N; i++ {
+				tmp := make([]person, len(data))
+				copy(tmp, data)
+				sort.Slice(tmp, func(i, j int) bool {
+					return tmp[i].Age < tmp[j].Age
+				})
+			}
+		})
+	}
+}
+
+type byAge []person
+
+func (a byAge) Len() int           { return len(a) }
+func (a byAge) Swap(i, j int)      { a[i], a[j] = a[j], a[i] }
+func (a byAge) Less(i, j int) bool { return a[i].Age < a[j].Age }
+
+// Method 2: sort.Sort with full interface
+func BenchmarkSortInterface_Arbitrary(b *testing.B) {
+	for _, size := range testSizes {
+		b.Run("Arbitrary_SortInterface_"+strconv.Itoa(size), func(b *testing.B) {
+			data := genPeople(size)
+			b.ReportAllocs()
+			b.ResetTimer()
+			for i := 0; i < b.N; i++ {
+				tmp := make([]person, len(data))
+				copy(tmp, data)
+				sort.Sort(byAge(tmp))
 			}
 		})
 	}

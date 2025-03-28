@@ -147,7 +147,7 @@ func TestUint16Desc_SmallRandom(t *testing.T) {
 }
 
 func TestUint16Asc_LargeRandom(t *testing.T) {
-	data := genUint16s(2_000_000)
+	data := genUint16s(2000000)
 	expected := append([]uint16(nil), data...)
 	sort.Slice(expected, func(i, j int) bool { return expected[i] < expected[j] })
 	Uint16Asc(data)
@@ -157,7 +157,7 @@ func TestUint16Asc_LargeRandom(t *testing.T) {
 }
 
 func TestUint16Desc_LargeRandom(t *testing.T) {
-	data := genUint16s(2_000_000)
+	data := genUint16s(2000000)
 	expected := append([]uint16(nil), data...)
 	sort.Slice(expected, func(i, j int) bool { return expected[i] > expected[j] })
 	Uint16Desc(data)

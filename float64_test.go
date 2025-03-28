@@ -2,10 +2,19 @@ package parsort
 
 import (
 	"math"
+	"math/rand"
 	"sort"
 	"strconv"
 	"testing"
 )
+
+func genFloats(n int) []float64 {
+	a := make([]float64, n)
+	for i := range a {
+		a[i] = rand.Float64()
+	}
+	return a
+}
 
 func TestFloat64Asc_EmptySlice(t *testing.T) {
 	var data []float64
@@ -127,7 +136,7 @@ func TestFloat64Desc_ReverseSorted(t *testing.T) {
 }
 
 func TestFloat64Asc_LargeRandom(t *testing.T) {
-	data := genFloats(2_000_000)
+	data := genFloats(2000000)
 	expected := append([]float64(nil), data...)
 	sort.Float64s(expected)
 	Float64Asc(data)
@@ -137,7 +146,7 @@ func TestFloat64Asc_LargeRandom(t *testing.T) {
 }
 
 func TestFloat64Desc_LargeRandom(t *testing.T) {
-	data := genFloats(2_000_000)
+	data := genFloats(2000000)
 	expected := append([]float64(nil), data...)
 	sort.Sort(sort.Reverse(sort.Float64Slice(expected)))
 	Float64Desc(data)

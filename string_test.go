@@ -1,10 +1,19 @@
 package parsort
 
 import (
+	"math/rand"
 	"sort"
 	"strconv"
 	"testing"
 )
+
+func genStrings(n int) []string {
+	a := make([]string, n)
+	for i := range a {
+		a[i] = "str" + strconv.Itoa(rand.Intn(1000000))
+	}
+	return a
+}
 
 func TestStringAsc_EmptySlice(t *testing.T) {
 	var data []string
@@ -131,7 +140,7 @@ func TestStringDesc_SmallRandom(t *testing.T) {
 }
 
 func TestStringAsc_LargeRandom(t *testing.T) {
-	data := genStrings(2_000_000)
+	data := genStrings(2000000)
 	expected := append([]string(nil), data...)
 	sort.Strings(expected)
 	StringAsc(data)
@@ -141,7 +150,7 @@ func TestStringAsc_LargeRandom(t *testing.T) {
 }
 
 func TestStringDesc_LargeRandom(t *testing.T) {
-	data := genStrings(2_000_000)
+	data := genStrings(2000000)
 	expected := append([]string(nil), data...)
 	sort.Sort(sort.Reverse(sort.StringSlice(expected)))
 	StringDesc(data)
