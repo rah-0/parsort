@@ -1,4 +1,4 @@
-[![Go Report Card](https://goreportcard.com/badge/github.com/rah-0/parsort)](https://goreportcard.com/report/github.com/rah-0/parsort)
+
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 <a href="https://www.buymeacoffee.com/rah.0" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/arial-orange.png" alt="Buy Me A Coffee" height="50"></a>
@@ -84,8 +84,8 @@ Overall, ***parsort*** can reduce ns/op by up to **90%** but at the expense of a
 
 ## 📌 Details
 - Comparison to other libs in the benchmarks repo, [here](https://github.com/rah-0/benchmarks/tree/master/meta#sorting).
-- Raw benchmark data, [here](https://github.com/rah-0/parsort/doc/BENCHMARK.md).
-- Changelog [here](https://github.com/rah-0/parsort/doc/CHANGELOG.md).
+- Raw benchmark data, [here](https://github.com/rah-0/parsort/blob/master/doc/BENCHMARK.md).
+- Changelog [here](https://github.com/rah-0/parsort/blob/master/doc/CHANGELOG.md).
 
 
 # 💚 Support
