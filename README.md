@@ -83,6 +83,7 @@ Overall, ***parsort*** can reduce ns/op by up to **90%** but at the expense of a
 | 10000000   | Asc/Desc |   -72.07  |  +300.01 |
 
 ## 📌 Details
+- Structs sorting use generics and its a topic on its own [here](https://github.com/rah-0/parsort/blob/master/doc/STRUCTS.md).
 - Comparison to other libs in the benchmarks repo, [here](https://github.com/rah-0/benchmarks/tree/master/meta#sorting).
 - Raw benchmark data, [here](https://github.com/rah-0/parsort/blob/master/doc/BENCHMARK.md).
 - Changelog [here](https://github.com/rah-0/parsort/blob/master/doc/CHANGELOG.md).
