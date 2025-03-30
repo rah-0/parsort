@@ -525,6 +525,39 @@ func TuneSpecific(runs int, startSize int, increment int, deltaThreshold float64
 		size += increment
 	}
 
+	StructMinParallelSize = 0
+	size = startSize
+	stop = false
+	for !stop {
+		label := strconv.Itoa(size)
+		sampleData := genPeople(size)
+
+		tuner.AddCase(label,
+			func() {
+				data := make([]person, len(sampleData))
+				copy(data, sampleData)
+				sort.Sort(byAge(data))
+			},
+			func() {
+				data := make([]person, len(sampleData))
+				copy(data, sampleData)
+				StructAsc(data, func(a, b person) bool { return a.Age < b.Age })
+			},
+			func(r BenchResult) {
+				if r.DeltaNsPct < deltaThreshold {
+					if showOutput {
+						fmt.Println("Struct")
+						tuner.PrintResult()
+					}
+					StructMinParallelSize = size
+					stop = true
+				}
+			},
+		)
+
+		tuner.Run().Reset()
+		size += increment
+	}
 }
 
 func Tune() {

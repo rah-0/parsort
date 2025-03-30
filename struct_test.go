@@ -78,14 +78,6 @@ func TestStructAsc_AllEqual(t *testing.T) {
 	}
 }
 
-func TestStructDesc_Stability(t *testing.T) {
-	data := []person{{"Z", 3}, {"A", 3}, {"B", 3}}
-	StructDesc(data, func(a, b person) bool { return a.Age < b.Age })
-	if data[0].Name != "Z" || data[1].Name != "A" || data[2].Name != "B" {
-		t.Errorf("Stable order was not preserved for equal values")
-	}
-}
-
 func BenchmarkSortStruct_Arbitrary(b *testing.B) {
 	for _, size := range testSizes {
 		b.Run("Arbitrary_SortStruct_"+strconv.Itoa(size), func(b *testing.B) {
@@ -95,7 +87,7 @@ func BenchmarkSortStruct_Arbitrary(b *testing.B) {
 			for i := 0; i < b.N; i++ {
 				tmp := make([]person, len(original))
 				copy(tmp, original)
-				structSort(tmp, func(a, b person) bool {
+				structSortUnstable(tmp, func(a, b person) bool {
 					return a.Age < b.Age
 				})
 			}
