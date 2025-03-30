@@ -1,5 +1,5 @@
 package main
 
 func main() {
-	TuneSpecific(1000, 1000, 1000, -10, true)
+	TuneSpecific(100, 1000, 1000, -10, true)
 }

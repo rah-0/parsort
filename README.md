@@ -87,7 +87,7 @@ Overall, ***parsort*** can reduce ns/op by up to **90%** but at the expense of a
 - Comparison to other libs in the benchmarks repo, [here](https://github.com/rah-0/benchmarks/tree/master/meta#sorting).
 - Raw benchmark data, [here](https://github.com/rah-0/parsort/blob/master/doc/BENCHMARK.md).
 - Changelog [here](https://github.com/rah-0/parsort/blob/master/doc/CHANGELOG.md).
-
+- Optional self enhancements based on your system, [here](https://github.com/rah-0/parsort/blob/master/doc/TUNER.md). 
 
 # 💚 Support
 Parsort was built out of love for clean and fast code. 
