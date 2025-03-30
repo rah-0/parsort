@@ -1,4 +1,4 @@
-package parsort
+package main
 
 import (
 	"sort"
@@ -15,7 +15,7 @@ func IntDesc(data []int) {
 
 func intSort(data []int, reverse bool) {
 	n := len(data)
-	if n < 10000 {
+	if n < IntMinParallelSize {
 		sort.Ints(data)
 		if reverse {
 			intReverse(data)

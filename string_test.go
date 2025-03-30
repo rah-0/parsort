@@ -1,19 +1,10 @@
-package parsort
+package main
 
 import (
-	"math/rand"
 	"sort"
 	"strconv"
 	"testing"
 )
-
-func genStrings(n int) []string {
-	a := make([]string, n)
-	for i := range a {
-		a[i] = "str" + strconv.Itoa(rand.Intn(1000000))
-	}
-	return a
-}
 
 func TestStringAsc_EmptySlice(t *testing.T) {
 	var data []string
@@ -157,18 +148,6 @@ func TestStringDesc_LargeRandom(t *testing.T) {
 	if !stringSlicesEqual(data, expected) {
 		t.Errorf("sorted result incorrect for large descending slice")
 	}
-}
-
-func stringSlicesEqual(a, b []string) bool {
-	if len(a) != len(b) {
-		return false
-	}
-	for i := range a {
-		if a[i] != b[i] {
-			return false
-		}
-	}
-	return true
 }
 
 func BenchmarkParsortStringAsc(b *testing.B) {

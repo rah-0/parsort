@@ -1,4 +1,4 @@
-package parsort
+package main
 
 import (
 	"sort"
@@ -16,7 +16,7 @@ func TimeDesc(data []time.Time) {
 
 func timeSort(data []time.Time, reverse bool) {
 	n := len(data)
-	if n < 10000 {
+	if n < TimeMinParallelSize {
 		sort.Slice(data, func(i, j int) bool {
 			return data[i].Before(data[j])
 		})

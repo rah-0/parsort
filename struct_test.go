@@ -1,27 +1,9 @@
-package parsort
+package main
 
 import (
 	"strconv"
 	"testing"
 )
-
-func isSortedAsc(data []person) bool {
-	for i := 1; i < len(data); i++ {
-		if data[i-1].Age > data[i].Age {
-			return false
-		}
-	}
-	return true
-}
-
-func isSortedDesc(data []person) bool {
-	for i := 1; i < len(data); i++ {
-		if data[i-1].Age < data[i].Age {
-			return false
-		}
-	}
-	return true
-}
 
 func TestStructAsc(t *testing.T) {
 	data := genPeople(50000)

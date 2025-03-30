@@ -1,7 +1,6 @@
-package parsort
+package main
 
 import (
-	"math/rand"
 	"sort"
 	"strconv"
 	"testing"
@@ -164,26 +163,6 @@ func TestInt16Desc_LargeRandom(t *testing.T) {
 	if !int16SlicesEqual(data, expected) {
 		t.Errorf("sorted result incorrect for large descending slice")
 	}
-}
-
-func int16SlicesEqual(a, b []int16) bool {
-	if len(a) != len(b) {
-		return false
-	}
-	for i := range a {
-		if a[i] != b[i] {
-			return false
-		}
-	}
-	return true
-}
-
-func genInt16s(n int) []int16 {
-	a := make([]int16, n)
-	for i := range a {
-		a[i] = int16(rand.Intn(65536) - 32768)
-	}
-	return a
 }
 
 func BenchmarkParsortInt16Asc(b *testing.B) {

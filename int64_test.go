@@ -1,7 +1,6 @@
-package parsort
+package main
 
 import (
-	"math/rand"
 	"sort"
 	"strconv"
 	"testing"
@@ -164,26 +163,6 @@ func TestInt64Desc_LargeRandom(t *testing.T) {
 	if !int64SlicesEqual(data, expected) {
 		t.Errorf("sorted result incorrect for large descending slice")
 	}
-}
-
-func int64SlicesEqual(a, b []int64) bool {
-	if len(a) != len(b) {
-		return false
-	}
-	for i := range a {
-		if a[i] != b[i] {
-			return false
-		}
-	}
-	return true
-}
-
-func genInt64s(n int) []int64 {
-	a := make([]int64, n)
-	for i := range a {
-		a[i] = rand.Int63()
-	}
-	return a
 }
 
 func BenchmarkParsortInt64Asc(b *testing.B) {

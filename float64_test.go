@@ -1,20 +1,10 @@
-package parsort
+package main
 
 import (
-	"math"
-	"math/rand"
 	"sort"
 	"strconv"
 	"testing"
 )
-
-func genFloats(n int) []float64 {
-	a := make([]float64, n)
-	for i := range a {
-		a[i] = rand.Float64()
-	}
-	return a
-}
 
 func TestFloat64Asc_EmptySlice(t *testing.T) {
 	var data []float64
@@ -173,18 +163,6 @@ func TestFloat64Desc_SmallRandom(t *testing.T) {
 	if !floatSlicesEqual(data, expected) {
 		t.Errorf("sorted result incorrect for small descending slice")
 	}
-}
-
-func floatSlicesEqual(a, b []float64) bool {
-	if len(a) != len(b) {
-		return false
-	}
-	for i := range a {
-		if math.Abs(a[i]-b[i]) > 1e-9 {
-			return false
-		}
-	}
-	return true
 }
 
 func BenchmarkParsortFloat64Asc(b *testing.B) {

@@ -1,4 +1,4 @@
-package parsort
+package main
 
 import (
 	"sort"
@@ -15,7 +15,7 @@ func StringDesc(data []string) {
 
 func stringSort(data []string, reverse bool) {
 	n := len(data)
-	if n < 10000 {
+	if n < StringMinParallelSize {
 		sort.Strings(data)
 		if reverse {
 			stringReverse(data)

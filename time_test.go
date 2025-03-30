@@ -1,21 +1,11 @@
-package parsort
+package main
 
 import (
-	"math/rand"
 	"sort"
 	"strconv"
 	"testing"
 	"time"
 )
-
-func genTimes(n int) []time.Time {
-	a := make([]time.Time, n)
-	base := time.Now()
-	for i := range a {
-		a[i] = base.Add(time.Duration(rand.Int63n(1e9)))
-	}
-	return a
-}
 
 func TestTimeAsc_EmptySlice(t *testing.T) {
 	var data []time.Time
@@ -190,18 +180,6 @@ func TestTimeDesc_LargeRandom(t *testing.T) {
 	if !timeSlicesEqual(data, expected) {
 		t.Errorf("sorted result incorrect for large descending slice")
 	}
-}
-
-func timeSlicesEqual(a, b []time.Time) bool {
-	if len(a) != len(b) {
-		return false
-	}
-	for i := range a {
-		if !a[i].Equal(b[i]) {
-			return false
-		}
-	}
-	return true
 }
 
 func BenchmarkParsortTimeAsc(b *testing.B) {

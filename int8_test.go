@@ -1,7 +1,6 @@
-package parsort
+package main
 
 import (
-	"math/rand"
 	"sort"
 	"strconv"
 	"testing"
@@ -164,26 +163,6 @@ func TestInt8Desc_SmallRandom(t *testing.T) {
 	if !int8SlicesEqual(data, expected) {
 		t.Errorf("sorted result incorrect for small descending slice")
 	}
-}
-
-func int8SlicesEqual(a, b []int8) bool {
-	if len(a) != len(b) {
-		return false
-	}
-	for i := range a {
-		if a[i] != b[i] {
-			return false
-		}
-	}
-	return true
-}
-
-func genInt8s(n int) []int8 {
-	a := make([]int8, n)
-	for i := range a {
-		a[i] = int8(rand.Intn(256) - 128)
-	}
-	return a
 }
 
 func BenchmarkParsortInt8Asc(b *testing.B) {

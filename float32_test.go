@@ -1,8 +1,6 @@
-package parsort
+package main
 
 import (
-	"math"
-	"math/rand"
 	"sort"
 	"strconv"
 	"testing"
@@ -165,26 +163,6 @@ func TestFloat32Desc_LargeRandom(t *testing.T) {
 	if !float32SlicesEqual(data, expected) {
 		t.Errorf("sorted result incorrect for large descending slice")
 	}
-}
-
-func float32SlicesEqual(a, b []float32) bool {
-	if len(a) != len(b) {
-		return false
-	}
-	for i := range a {
-		if math.Abs(float64(a[i]-b[i])) > 1e-5 {
-			return false
-		}
-	}
-	return true
-}
-
-func genFloat32s(n int) []float32 {
-	a := make([]float32, n)
-	for i := range a {
-		a[i] = rand.Float32()
-	}
-	return a
 }
 
 func BenchmarkParsortFloat32Asc(b *testing.B) {

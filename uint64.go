@@ -1,4 +1,4 @@
-package parsort
+package main
 
 import (
 	"sort"
@@ -15,7 +15,7 @@ func Uint64Desc(data []uint64) {
 
 func uint64Sort(data []uint64, reverse bool) {
 	n := len(data)
-	if n < 10000 {
+	if n < Uint64MinParallelSize {
 		sort.Slice(data, func(i, j int) bool {
 			return data[i] < data[j]
 		})

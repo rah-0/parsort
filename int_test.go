@@ -1,19 +1,10 @@
-package parsort
+package main
 
 import (
-	"math/rand"
 	"sort"
 	"strconv"
 	"testing"
 )
-
-func genInts(n int) []int {
-	a := make([]int, n)
-	for i := range a {
-		a[i] = rand.Int()
-	}
-	return a
-}
 
 func TestIntAsc_EmptySlice(t *testing.T) {
 	var data []int
@@ -172,18 +163,6 @@ func TestIntDesc_SmallRandom(t *testing.T) {
 	if !intSlicesEqual(data, expected) {
 		t.Errorf("sorted result incorrect for small descending slice")
 	}
-}
-
-func intSlicesEqual(a, b []int) bool {
-	if len(a) != len(b) {
-		return false
-	}
-	for i := range a {
-		if a[i] != b[i] {
-			return false
-		}
-	}
-	return true
 }
 
 func BenchmarkParsortIntAsc(b *testing.B) {

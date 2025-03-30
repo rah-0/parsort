@@ -1,4 +1,4 @@
-package parsort
+package main
 
 import (
 	"sort"
@@ -15,7 +15,7 @@ func Uint16Desc(data []uint16) {
 
 func uint16Sort(data []uint16, reverse bool) {
 	n := len(data)
-	if n < 10000 {
+	if n < Uint16MinParallelSize {
 		sort.Slice(data, func(i, j int) bool {
 			return data[i] < data[j]
 		})

@@ -1,15 +1,11 @@
-package parsort
+package main
 
 import (
-	"fmt"
-	"math/rand"
 	"sort"
 	"strconv"
 	"testing"
 	"time"
 )
-
-var testSizes = []int{1000, 10000, 100000, 1000000, 10000000}
 
 func BenchmarkBaselineSortIntsAsc(b *testing.B) {
 	for _, size := range testSizes {
@@ -118,22 +114,6 @@ func BenchmarkBaselineSortStringsDesc(b *testing.B) {
 	}
 }
 
-type person struct {
-	Name string
-	Age  int
-}
-
-func genPeople(n int) []person {
-	a := make([]person, n)
-	for i := range a {
-		a[i] = person{
-			Name: fmt.Sprintf("Name%d", rand.Intn(1000000)),
-			Age:  rand.Intn(100),
-		}
-	}
-	return a
-}
-
 // Method 1: sort.Slice with index-based comparator
 func BenchmarkSortSlice_Arbitrary(b *testing.B) {
 	for _, size := range testSizes {
@@ -151,12 +131,6 @@ func BenchmarkSortSlice_Arbitrary(b *testing.B) {
 		})
 	}
 }
-
-type byAge []person
-
-func (a byAge) Len() int           { return len(a) }
-func (a byAge) Swap(i, j int)      { a[i], a[j] = a[j], a[i] }
-func (a byAge) Less(i, j int) bool { return a[i].Age < a[j].Age }
 
 // Method 2: sort.Sort with full interface
 func BenchmarkSortInterface_Arbitrary(b *testing.B) {

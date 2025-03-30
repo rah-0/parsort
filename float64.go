@@ -1,4 +1,4 @@
-package parsort
+package main
 
 import (
 	"sort"
@@ -15,7 +15,7 @@ func Float64Desc(data []float64) {
 
 func float64Sort(data []float64, reverse bool) {
 	n := len(data)
-	if n < 10000 {
+	if n < Float64MinParallelSize {
 		sort.Float64s(data)
 		if reverse {
 			float64Reverse(data)

@@ -1,4 +1,4 @@
-package parsort
+package main
 
 import (
 	"sort"
@@ -14,7 +14,7 @@ func structSort[T any](data []T, less func(a, b T) bool) {
 		return
 	}
 
-	if n < 10000 {
+	if n < StructMinParallelSize {
 		sort.SliceStable(data, func(i, j int) bool {
 			return less(data[i], data[j])
 		})

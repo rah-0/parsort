@@ -1,4 +1,4 @@
-package parsort
+package main
 
 import (
 	"sort"
@@ -15,7 +15,7 @@ func Float32Desc(data []float32) {
 
 func float32Sort(data []float32, reverse bool) {
 	n := len(data)
-	if n < 10000 {
+	if n < Float32MinParallelSize {
 		sort.Slice(data, func(i, j int) bool {
 			return data[i] < data[j]
 		})
