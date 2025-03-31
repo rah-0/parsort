@@ -7,5 +7,5 @@ import (
 func TestTune(t *testing.T) {
 	t.Skip()
 
-	Tune()
+	TuneSpecific(100, 1000, 1000, -10, true)
 }
