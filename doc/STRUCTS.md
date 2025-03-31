@@ -1,6 +1,6 @@
 # Struct Sorting
 
-Moving away from **multiway parallel merge sort with pairwise merging**, the algorithm used in this case is **Parallel Stable Pairwise Merge Sort**.
+Moving away from **multiway parallel merge sort with pairwise merging**, the algorithm used in this case is **Parallel Pairwise Merge Sort**.
 
 ### Why Multiway Merge Sort (with a priority queue) is not efficient for structs:
 
@@ -83,7 +83,7 @@ sort.Sort(byAge(people))
 
 This is already a major improvement.
 
-So the next comparison will be relative to this, Parallel Stable Pairwise Merge Sort:
+So the next comparison will be relative to this, Parallel Pairwise Merge Sort:
 
 ```
 StructAsc(people, func(a, b person) bool {
@@ -106,18 +106,14 @@ StructAsc(people, func(a, b person) bool {
   The standard library’s `sort.Sort` outperforms all alternatives. The overhead of parallelism and memory allocations isn’t worth it for small slices.
 
 - **100k elements and above**  
-  The **Parallel Stable Pairwise Merge Sort** consistently outperforms both `sort.Slice` and `sort.Sort` in raw CPU performance (`ns/op`), achieving:
+  The **Parallel Pairwise Merge Sort** consistently outperforms both `sort.Slice` and `sort.Sort` in raw CPU performance (`ns/op`), achieving:
    - ~20–40% faster execution
    - ~2× higher memory usage (due to parallel merge buffers)
 
 - **Memory Tradeoff**  
   While `B/op` is around **200%** of the baseline, this is a deliberate tradeoff to maximize **CPU throughput**, which is acceptable in modern systems for performance-critical workloads.
 
-- **Stability**  
-  This parallel implementation is **fully stable**, maintaining the original order of equal elements. In contrast, `sort.Slice` and `sort.Sort` are not stable unless you use `sort.SliceStable`.
-
 - **Best Use Cases**
    - Sorting large slices of structs (e.g., event logs, database records)
    - Multi-core systems where parallel sorting improves throughput
-   - Situations requiring **stable** sorting guarantees
 
