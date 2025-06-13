@@ -13,38 +13,6 @@ A minimal, dependency-free Go library for parallel sorting of slices. Designed t
 go get github.com/rah-0/parsort
 ```
 
-## Quick Start
-
-```go
-package main
-
-import (
-    "fmt"
-    "github.com/rah-0/parsort"
-)
-
-func main() {
-    // Ascending order sort
-    numbers := []int{5, 2, 6, 3, 1, 4}
-    parsort.IntAsc(numbers)
-    fmt.Println("Ascending:", numbers) // [1 2 3 4 5 6]
-    
-    // Descending order sort
-    moreNumbers := []int{5, 2, 6, 3, 1, 4}
-    parsort.IntDesc(moreNumbers)
-    fmt.Println("Descending:", moreNumbers) // [6 5 4 3 2 1]
-    
-    // Other supported types
-    floats := []float64{5.2, 3.8, 9.1, 2.4, 1.0}
-    parsort.Float64Asc(floats)
-    fmt.Println("Sorted floats:", floats)
-    
-    words := []string{"banana", "apple", "cherry", "date"}
-    parsort.StringAsc(words)
-    fmt.Println("Sorted strings:", words)
-}
-```
-
 ## Algorithm
 The algorithm built is a **parallel merge sort**, more specifically a **multiway parallel merge sort with pairwise merging**.
 
