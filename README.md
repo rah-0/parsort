@@ -7,6 +7,44 @@
 # (par)allel (sort)ing
 A minimal, dependency-free Go library for parallel sorting of slices. Designed to scale across CPU cores and stay close to idiomatic Go.
 
+## Installation
+
+```bash
+go get github.com/rah-0/parsort
+```
+
+## Quick Start
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/rah-0/parsort"
+)
+
+func main() {
+    // Ascending order sort
+    numbers := []int{5, 2, 6, 3, 1, 4}
+    parsort.IntAsc(numbers)
+    fmt.Println("Ascending:", numbers) // [1 2 3 4 5 6]
+    
+    // Descending order sort
+    moreNumbers := []int{5, 2, 6, 3, 1, 4}
+    parsort.IntDesc(moreNumbers)
+    fmt.Println("Descending:", moreNumbers) // [6 5 4 3 2 1]
+    
+    // Other supported types
+    floats := []float64{5.2, 3.8, 9.1, 2.4, 1.0}
+    parsort.Float64Asc(floats)
+    fmt.Println("Sorted floats:", floats)
+    
+    words := []string{"banana", "apple", "cherry", "date"}
+    parsort.StringAsc(words)
+    fmt.Println("Sorted strings:", words)
+}
+```
+
 ## Algorithm
 The algorithm built is a **parallel merge sort**, more specifically a **multiway parallel merge sort with pairwise merging**.
 
@@ -82,14 +120,46 @@ Overall, ***parsort*** can reduce ns/op by up to **90%** but at the expense of a
 | 1000000    | Asc/Desc |   -70.35  |  +300.08 |
 | 10000000   | Asc/Desc |   -72.07  |  +300.01 |
 
-## 📌 Details
-- Structs sorting use generics and its a topic on its own [here](https://github.com/rah-0/parsort/blob/master/doc/STRUCTS.md).
-- Comparison to other libs in the benchmarks repo, [here](https://github.com/rah-0/benchmarks/tree/master/meta#sorting).
-- Raw benchmark data, [here](https://github.com/rah-0/parsort/blob/master/doc/BENCHMARK.md).
-- Changelog [here](https://github.com/rah-0/parsort/blob/master/doc/CHANGELOG.md).
-- Optional self enhancements based on your system, [here](https://github.com/rah-0/parsort/blob/master/doc/TUNER.md). 
+## Supported Types
 
-# 💚 Support
+Parsort provides specialized sorting functions for each of these types:
+
+- `int`, `int8`, `int16`, `int32`, `int64`
+- `uint`, `uint8`, `uint16`, `uint32`, `uint64`
+- `float32`, `float64`
+- `string`
+- `time.Time`
+- `struct` (via generics)
+
+Each type has both ascending (`TypeAsc`) and descending (`TypeDesc`) sorting functions.
+
+## Performance Tuning
+
+Parsort automatically determines if a slice is large enough to benefit from parallel sorting. The default thresholds work well for most systems, but you can optimize them for your specific hardware:
+
+```go
+// Optimize thresholds for your hardware
+parsort.Tune()
+
+// Or tune with specific parameters
+parsort.TuneSpecific(5, 1000, 1000, -10.0, true)
+```
+
+Thresholds can also be manually adjusted:
+
+```go
+// Manually set threshold for int sorting
+parsort.IntMinParallelSize = 5000
+```
+
+## 📌 Additional Resources
+- [Struct sorting details](https://github.com/rah-0/parsort/blob/master/doc/STRUCTS.md)
+- [Comparison to other libraries](https://github.com/rah-0/benchmarks/tree/master/meta#sorting)
+- [Raw benchmark data](https://github.com/rah-0/parsort/blob/master/doc/BENCHMARK.md)
+- [Changelog](https://github.com/rah-0/parsort/blob/master/doc/CHANGELOG.md)
+- [Tuner documentation](https://github.com/rah-0/parsort/blob/master/doc/TUNER.md)
+
+## 💚 Support
 Parsort was built out of love for clean and fast code. 
 If it saved you time or brought value to your project, feel free to show some support. Every bit is appreciated 🙂
 
